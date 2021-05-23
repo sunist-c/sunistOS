@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunistLibs", "SunistLibs\SunistLibs.csproj", "{DF1FD74D-E64E-4FDF-B727-2AA7DA1B176C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunistShell", "SunistShell\SunistShell.csproj", "{EC7E6BBF-9781-46D6-BCDC-69052197B99C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCLI", "TestCLI\TestCLI.csproj", "{956E4A3A-C58A-4956-B4F0-8600AC8447A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF1FD74D-E64E-4FDF-B727-2AA7DA1B176C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF1FD74D-E64E-4FDF-B727-2AA7DA1B176C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF1FD74D-E64E-4FDF-B727-2AA7DA1B176C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF1FD74D-E64E-4FDF-B727-2AA7DA1B176C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC7E6BBF-9781-46D6-BCDC-69052197B99C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7E6BBF-9781-46D6-BCDC-69052197B99C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC7E6BBF-9781-46D6-BCDC-69052197B99C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC7E6BBF-9781-46D6-BCDC-69052197B99C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{956E4A3A-C58A-4956-B4F0-8600AC8447A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{956E4A3A-C58A-4956-B4F0-8600AC8447A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{956E4A3A-C58A-4956-B4F0-8600AC8447A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{956E4A3A-C58A-4956-B4F0-8600AC8447A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {622E8A30-4482-4807-9D48-1276D66787A9}
+	EndGlobalSection
+EndGlobal
