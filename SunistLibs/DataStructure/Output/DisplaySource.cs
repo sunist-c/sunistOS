@@ -10,10 +10,14 @@ namespace SunistLibs.DataStructure.Output
         private List<string[]> _rowData;
         private DataTable _dataTable;
 
+        public string SourceName
+        {
+            get => _sourceName;
+        }
+
         public DataTable DataTable
         {
             get => _dataTable;
-            set => _dataTable = value;
         }
 
         public DisplaySource()

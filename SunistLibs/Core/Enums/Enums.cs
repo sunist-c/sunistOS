@@ -51,4 +51,11 @@
         User,
         None
     }
+
+    public enum ProcessManagerAlgorithm
+    {
+        Auto,
+        FIFO,
+        SJF
+    }
 }

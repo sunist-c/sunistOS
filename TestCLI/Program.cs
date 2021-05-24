@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using SunistLibs.Core;
 using SunistLibs.Core.Enums;
@@ -16,12 +17,17 @@ namespace TestCLI
             ProcessController controller = new ProcessController();
             controller.Display += (source, mode) =>
             {
-                Console.WriteLine(source.DataTable.Columns[0].ToString() + source.DataTable.Columns[1].ToString() + source.DataTable.Columns[2].ToString());
-                Console.WriteLine(source.DataTable.Rows[0][0].ToString() + source.DataTable.Rows[0][1].ToString() + source.DataTable.Rows[0][2].ToString());
+                if (mode == DisplayMode.All)
+                    Console.WriteLine($"Process Created: ID {source.DataTable.Rows[0][0]}, CPU Time: {source.DataTable.Rows[0][3]}");
                 return true;
             };
-            controller.Create("test", new MemoryBlock(), WeightType.System, true);
-            
+
+            ulong i = 1;
+            for (int ii = 0; ii < 10; ii++, i++)
+            {
+                controller.List(ProcessStatus.Running);
+                Thread.Sleep(100);
+            }
         }
     }
 }

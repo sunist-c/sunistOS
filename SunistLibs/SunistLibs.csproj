@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Core\Algorithm\ProcessManageAlgorithm.cs" />
     <Compile Include="Core\Delegate\Delegates.cs" />
     <Compile Include="Core\Enums\Enums.cs" />
+    <Compile Include="Core\File.cs" />
+    <Compile Include="Core\FileController.cs" />
     <Compile Include="Core\MemoryBlock.cs" />
     <Compile Include="Core\Process.cs" />
     <Compile Include="Core\ProcessController.cs" />

@@ -1,30 +1,66 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Timers;
 using SunistLibs.Core.Delegate;
 using SunistLibs.Core.Enums;
 using SunistLibs.DataStructure.Interfaces;
 using SunistLibs.DataStructure.Output;
+using SunistLibs.Core.Algorithm;
 
 namespace SunistLibs.Core
 {
     public class ProcessController : IDisplayable
     {
-        private Hashtable _processesList;
+        private List<Process> _processesList;
         private MemoryController _memoryController;
+        private ulong _maxRunningProcessCount;
+        private ProcessManagerAlgorithm _managerAlgorithm;
+        private ulong _usedProcesCount;
+        private List<Process> _runningProcess;
+        private List<Process> _queuingProcess;
+        private Timer _timer;
 
-        public ProcessController()
+        public ProcessController(ulong maxRunningProcessCount = 1, 
+            ProcessManagerAlgorithm managerAlgorithm = ProcessManagerAlgorithm.Auto)
         {
+            _runningProcess = new List<Process>();
             _memoryController = new MemoryController();
-            _processesList = new Hashtable();
+            _queuingProcess = new List<Process>();
+            _processesList = new List<Process>();
+            _maxRunningProcessCount = maxRunningProcessCount;
+            _managerAlgorithm = managerAlgorithm;
+            _usedProcesCount = 0;
+            Create("ProcessController", new MemoryBlock(), WeightType.System, false);
+            
+
+            (_processesList[0] as Process).Status = ProcessStatus.Running;
+            _runningProcess.Add((Process)_processesList[0]);
+            
+            _timer = new Timer(100);
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
+            _timer.Elapsed += (sender, args) =>
+            {
+                foreach (Process xProcess in _runningProcess)
+                {
+                    xProcess.CpuTime += 1;
+                }
+            };
+            _timer.Start();
         }
+        
 
         private ProcessStatus Start(Process process)
         {
+            process.Status = ProcessStatus.Running;
             return process.Status;
         }
 
         private ProcessStatus Abort(Process process)
         {
+            process.Status = ProcessStatus.Blocked;
+            process.Memory = null;
             return process.Status;
         }
 
@@ -61,7 +97,7 @@ namespace SunistLibs.Core
 
         private ulong GetNewProcessId()
         {
-            return 0;
+            return _usedProcesCount++;
         }
 
         public DisplaySource DisplayInfo(Display displayMethod, params object[] args)
@@ -74,7 +110,7 @@ namespace SunistLibs.Core
         public ulong Create(string name, MemoryBlock context, WeightType weight, bool needMessage = false)
         {
             var x = new Process(name, GetNewProcessId(), GetNewProcessWeight(weight), context);
-            _processesList.Add(x.Id, x);
+            _processesList.Add(x);
             Display?.Invoke(new DisplaySource(
                 "New Process Create Succeed",
                 new string[] {"ProcessId", "ProcessName", "ProcessMemorySize"},
@@ -90,7 +126,7 @@ namespace SunistLibs.Core
 
         public ulong Run<T>(ulong processId, bool needMessage, GeneralDelegate<T> method, params Object[] args)
         {
-            if (!_processesList.Contains(processId))
+            if (false)
             {
                 // todo: 完成异常状态：找不到进程
                 throw new Exception();
@@ -99,9 +135,27 @@ namespace SunistLibs.Core
             {
                 try
                 {
-                    Process p = _processesList[processId] as Process;
+                    Process p = _processesList[(int)processId] as Process;
+                    
+                    // todo: 将任务调度算法分配到具体实例
+                    switch (_managerAlgorithm)
+                    {
+                        case ProcessManagerAlgorithm.Auto:
+                            ProcessManageAlgorithm.FifoOnRunning(ref _runningProcess, ref _queuingProcess ,_maxRunningProcessCount, ref p);
+                            break;
+                        case ProcessManagerAlgorithm.SJF:
+                            break;
+                        case ProcessManagerAlgorithm.FIFO:
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                    
+
+                    Start(p);
                     p.Run<T>(method, args);
-                    _processesList[processId] = p;
+                    _processesList[(int)processId] = p;
                     
                     Display?.Invoke(new DisplaySource(
 
@@ -117,7 +171,7 @@ namespace SunistLibs.Core
 
         public ulong Kill(ulong processId, bool needMessage = true)
         {
-            if (!_processesList.Contains(processId))
+            if (false)
             {
                 // todo: 完成异常状态：找不到进程
                 throw new Exception();
@@ -126,13 +180,17 @@ namespace SunistLibs.Core
             {
                 try
                 {
-                    Process p = _processesList[processId] as Process;
+                    Process p = _processesList[(int)processId] as Process;
                     if (p.Status == ProcessStatus.Running)
                     {
                         Abort(p);
                     }
+                    else
+                    {
+                        // todo: 未完成状态未完成
+                    }
 
-                    _processesList[processId] = p;
+                    _processesList[(int)processId] = p;
                     return p.Id;
                 }
                 catch
@@ -140,6 +198,32 @@ namespace SunistLibs.Core
                     throw;
                 }
             }
+        }
+
+        public void List(params ProcessStatus[] statuses)
+        {
+            List<string[]> processData = new List<string[]>();
+            foreach (Process tProcess in _processesList)
+            {
+                foreach (ProcessStatus xStatus in statuses)
+                {
+                    if (tProcess.Status == xStatus)
+                    {
+                        string[] record = new string[4];
+                        record[0] = tProcess.Id.ToString();
+                        record[1] = tProcess.Name;
+                        record[2] = tProcess.Weight.ToString();
+                        record[3] = tProcess.CpuTime.ToString();
+                        processData.Add(record);
+                    }
+                }
+            }
+            
+            Display(new DisplaySource(
+                "MemoryList",
+                new string[] {"ProcessId", "ProcessName", "ProcessWeight", "CPU Time"},
+                processData
+            ), DisplayMode.All);
         }
     }
 }
