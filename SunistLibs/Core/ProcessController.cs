@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Reflection.Emit;
 using SunistLibs.Core.Delegate;
 using SunistLibs.Core.Enums;
 using SunistLibs.DataStructure.Interfaces;
@@ -13,6 +10,13 @@ namespace SunistLibs.Core
     public class ProcessController : IDisplayable
     {
         private Hashtable _processesList;
+        private MemoryController _memoryController;
+
+        public ProcessController()
+        {
+            _memoryController = new MemoryController();
+            _processesList = new Hashtable();
+        }
 
         private ProcessStatus Start(Process process)
         {
@@ -26,9 +30,6 @@ namespace SunistLibs.Core
 
         private ProcessStatus Hangout(Process process)
         {
-            Object[] a = new object[2];
-
-            DisplayInfo(args => new DisplaySource(), a);
             
             return process.Status;
         }
@@ -101,9 +102,40 @@ namespace SunistLibs.Core
                     Process p = _processesList[processId] as Process;
                     p.Run<T>(method, args);
                     _processesList[processId] = p;
+                    
+                    Display?.Invoke(new DisplaySource(
+
+                    ), needMessage ? DisplayMode.All : DisplayMode.System);
                     return p.Id;
                 }
                 catch (Exception e)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public ulong Kill(ulong processId, bool needMessage = true)
+        {
+            if (!_processesList.Contains(processId))
+            {
+                // todo: 完成异常状态：找不到进程
+                throw new Exception();
+            }
+            else
+            {
+                try
+                {
+                    Process p = _processesList[processId] as Process;
+                    if (p.Status == ProcessStatus.Running)
+                    {
+                        Abort(p);
+                    }
+
+                    _processesList[processId] = p;
+                    return p.Id;
+                }
+                catch
                 {
                     throw;
                 }

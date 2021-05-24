@@ -9,6 +9,14 @@
         Hanging
     }
 
+    public enum MemoryStatus
+    {
+        Ready,
+        Hanging,
+        Blocked,
+        Caching
+    }
+
     public enum AuthorityType
     {
         Root,

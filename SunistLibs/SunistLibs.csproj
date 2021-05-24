@@ -49,6 +49,7 @@
     <Compile Include="Core\ProcessController.cs" />
     <Compile Include="DataStructure\Interfaces\IDisplayable.cs" />
     <Compile Include="DataStructure\Output\DisplaySource.cs" />
+    <Compile Include="MemoryController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,9 +9,19 @@ namespace SunistLibs.DataStructure.Output
         private string[] _columnsName;
         private List<string[]> _rowData;
         private DataTable _dataTable;
-        
+
+        public DataTable DataTable
+        {
+            get => _dataTable;
+            set => _dataTable = value;
+        }
+
         public DisplaySource()
         {
+            _columnsName = new string[1];
+            _rowData = new List<string[]>();
+            _dataTable = new DataTable();
+
             _sourceName = "General Source";
             _columnsName = new string[] {"Title"};
             _rowData = new List<string[]>();
@@ -23,6 +33,10 @@ namespace SunistLibs.DataStructure.Output
 
         public DisplaySource(string sourceName, string[] columnsName, List<string[]> rowData)
         {
+            _columnsName = new string[1];
+            _rowData = new List<string[]>();
+            _dataTable = new DataTable();
+            
             _sourceName = sourceName;
             _columnsName = columnsName;
             _rowData = rowData;
@@ -39,6 +53,10 @@ namespace SunistLibs.DataStructure.Output
         
         public DisplaySource(string sourceName, string[] columnsName, string[] rowData)
         {
+            _columnsName = new string[1];
+            _rowData = new List<string[]>();
+            _dataTable = new DataTable();
+            
             _sourceName = sourceName;
             _columnsName = columnsName;
             _rowData = new List<string[]>();

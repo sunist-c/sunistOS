@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Collections;
+using SunistLibs.Core.Enums;
 
 namespace SunistLibs.Core
 {
     public class MemoryBlock
     {
         private Hashtable _data;
+        private MemoryStatus _status;
+
+        public MemoryStatus Status
+        {
+            get => _status;
+            set => _status = value;
+        }
 
         public MemoryBlock()
         {
@@ -13,9 +21,11 @@ namespace SunistLibs.Core
             _data.Add("size", (ulong)0);
         }
 
-        public void AddData(Object key, Object data)
+        public bool Alloc(ulong size, Object key, Object value)
         {
-            _data.Add(key, data);
+            _data.Add(key, value);
+            _data["size"] = Size() + size;
+            return true;
         }
 
         public TValueType GetData<TKeyType, TValueType>(TKeyType key)
