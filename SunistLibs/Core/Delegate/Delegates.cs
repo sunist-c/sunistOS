@@ -9,4 +9,6 @@ namespace SunistLibs.Core.Delegate
     public delegate DisplaySource Display(params Object[] args);
 
     public delegate bool DisplayEventHandler(DisplaySource displaySource, DisplayMode mode);
+
+    public delegate void ShellInterface(string[] args);
 }

@@ -125,7 +125,7 @@ namespace SunistLibs.Core
             return x.Id;
         }
 
-        public ulong Run<T>(ulong processId, bool needMessage, GeneralDelegate<T> method, params Object[] args)
+        public ulong Run<T>(ulong processId, bool needMessage, GeneralDelegate<T> method, ref T returnValue, params Object[] args)
         {
             if (false)
             {

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         xmlns:hc="https://handyorg.github.io/handycontrol" 
         xmlns:index="clr-namespace:SunistShell.ViewModel.Index" 
-        Title="SunistOS - 用户图形界面" Height="450" Width="800" Icon="icon.png">
+        Title="SunistOS - 用户图形界面" Height="600" Width="800" Icon="icon.png"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="Icons" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/Resources/Static/Fonts/#iconfont"/>
@@ -92,33 +93,35 @@
                 <RowDefinition Height="200"/>
             </Grid.RowDefinitions>
             <ScrollViewer Grid.Row="0">
-                <hc:SideMenu AutoSelect="True" >
-                    <hc:SideMenuItem Header="进程管理实验">
-                        <hc:SideMenuItem.Icon>
-                            <TextBlock Text="&#xe6b2;" Style="{StaticResource Icons}" FontSize="14"/>
-                        </hc:SideMenuItem.Icon>
-                    </hc:SideMenuItem>
-                    <hc:SideMenuItem Header="进程调度实验">
-                        <hc:SideMenuItem.Icon>
-                            <TextBlock Text="&#xe601;" Style="{StaticResource Icons}" FontSize="14"/>
-                        </hc:SideMenuItem.Icon>
-                    </hc:SideMenuItem>
-                    <hc:SideMenuItem Header="页面置换算法">
-                        <hc:SideMenuItem.Icon>
-                            <TextBlock Text="&#xe727;" Style="{StaticResource Icons}" FontSize="14"/>
-                        </hc:SideMenuItem.Icon>
-                    </hc:SideMenuItem>
-                    <hc:SideMenuItem Header="设备管理实验">
-                        <hc:SideMenuItem.Icon>
-                            <TextBlock Text="&#xe711;" Style="{StaticResource Icons}" FontSize="14"/>
-                        </hc:SideMenuItem.Icon>
-                    </hc:SideMenuItem>
-                    <hc:SideMenuItem Header="文件系统实验">
-                        <hc:SideMenuItem.Icon>
-                            <TextBlock Text="&#xe651;" Style="{StaticResource Icons}" FontSize="14"/>
-                        </hc:SideMenuItem.Icon>
-                    </hc:SideMenuItem>
-                </hc:SideMenu>
+                <StackPanel>
+                    <hc:SideMenu AutoSelect="True" >
+                        <hc:SideMenuItem Header="进程管理实验">
+                            <hc:SideMenuItem.Icon>
+                                <TextBlock Text="&#xe6b2;" Style="{StaticResource Icons}" FontSize="14"/>
+                            </hc:SideMenuItem.Icon>
+                        </hc:SideMenuItem>
+                        <hc:SideMenuItem Header="进程调度实验">
+                            <hc:SideMenuItem.Icon>
+                                <TextBlock Text="&#xe601;" Style="{StaticResource Icons}" FontSize="14"/>
+                            </hc:SideMenuItem.Icon>
+                        </hc:SideMenuItem>
+                        <hc:SideMenuItem Header="页面置换算法">
+                            <hc:SideMenuItem.Icon>
+                                <TextBlock Text="&#xe727;" Style="{StaticResource Icons}" FontSize="14"/>
+                            </hc:SideMenuItem.Icon>
+                        </hc:SideMenuItem>
+                        <hc:SideMenuItem Header="设备管理实验">
+                            <hc:SideMenuItem.Icon>
+                                <TextBlock Text="&#xe711;" Style="{StaticResource Icons}" FontSize="14"/>
+                            </hc:SideMenuItem.Icon>
+                        </hc:SideMenuItem>
+                        <hc:SideMenuItem Header="文件系统实验">
+                            <hc:SideMenuItem.Icon>
+                                <TextBlock Text="&#xe651;" Style="{StaticResource Icons}" FontSize="14"/>
+                            </hc:SideMenuItem.Icon>
+                        </hc:SideMenuItem>
+                    </hc:SideMenu>
+                </StackPanel>
             </ScrollViewer>
             
 

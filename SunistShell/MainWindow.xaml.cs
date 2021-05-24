@@ -17,7 +17,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SunistLibs.DataStructure.Output;
 using Process = System.Diagnostics.Process;
+using SunistShell.View;
 
 namespace SunistShell
 {
@@ -34,10 +36,14 @@ namespace SunistShell
             StatusInfo.ProgressValue = 30;
             StatusInfo.RootMode = true;
             
-            controller.Display += (source, mode) =>
+            controller.Display += OnControllerOnDisplay;
+        }
+
+        private bool OnControllerOnDisplay(DisplaySource source, DisplayMode mode)
+        {
+            switch (source.SourceName)
             {
-                if (source.SourceName=="ProcessList")
-                {
+                case "ProcessList":
                     Displayer.ItemsSource = source.DataTable.DefaultView;
                     StatusInfo.ProgressDescription = source.StatusDescription;
                     StatusInfo.ProgressValue = 0;
@@ -45,19 +51,18 @@ namespace SunistShell
                     {
                         Console.WriteLine($"Process Created: ID {x[0]}, CPU Time: {x[3]}");
                     }
-                    StatusInfo.ProgressValue = 100;
 
+                    StatusInfo.ProgressValue = 100;
                     StatusInfo.HistorySource.Add(new KeyValuePair<string, System.Data.DataTable>(InputBox.Text, source.DataTable));
                     if (StatusInfo.HistorySource.Count > 5)
                     {
                         StatusInfo.HistorySource.RemoveAt(0);
                     }
-                }
-                return true;
-            };
 
-            
-
+                    return true;
+                default:
+                    return true;
+            }
         }
 
         private bool Controller_Display(SunistLibs.DataStructure.Output.DisplaySource displaySource, SunistLibs.Core.Enums.DisplayMode mode)
@@ -67,7 +72,7 @@ namespace SunistShell
 
         private void OSIcon_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("SunistOS v0.0.1 beta 1\nCopyright (c) Sunist", "OS Info");
+            new InfoView().Show();
         }
 
         private void InstallTools_Click(object sender, RoutedEventArgs e)
@@ -163,6 +168,26 @@ namespace SunistShell
                     Displayer.ItemsSource = x.Value.DefaultView;
                 }
             }
+        }
+
+        // 用户自定义代码
+        public T[] ArgumentTake<T>(string[] args, string argName, uint argCount)
+        {
+            // argument parser code
+            throw new ArgumentException();
+        }
+        
+        public void cal_add(params int[] arg)
+        {
+            ulong pid = controller.Create("calculator", new MemoryBlock(), WeightType.Users, true);
+            int ans = 0;
+            controller.Run<int>(pid, true, args =>
+            {
+                int[] nums = ArgumentTake<int>(args as string[], "add", 2);
+                
+                return nums[0] + nums[1];
+                
+            }, ref ans, arg);
         }
     }
 }

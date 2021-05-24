@@ -65,6 +65,19 @@ namespace SunistLibs.Core.Algorithm
             }
         }
 
+        public static void FifoOnUpdate(ref List<Process> runningProcess, ref List<Process> queuingProcess,
+            ulong maxRunningProcess)
+        {
+            for (int i = 0; i < runningProcess.Count; ++i)
+            {
+                Process xEntry = runningProcess[i];
+                if (xEntry.ExceptedRuntime != UInt64.MaxValue && xEntry.CpuTime >= xEntry.ExceptedRuntime && xEntry.Weight < 9)
+                {
+                    FifoOnKilling(ref runningProcess, ref queuingProcess, maxRunningProcess, ref xEntry);
+                }
+            }
+        }
+
         #endregion
 
         #region RoundRobin
@@ -104,8 +117,60 @@ namespace SunistLibs.Core.Algorithm
 
         #region PriorityScheduling
 
-          
+        public static ProcessStatus PrioritySchedulingOnRunning(ref List<Process> runningProcess,
+            ref List<Process> queuingProcess,
+            ulong maxRunningProcess, ref Process process)
+        {
+            return FifoOnRunning(ref runningProcess, ref queuingProcess, maxRunningProcess, ref process);
+        }
 
+        public static ProcessStatus PrioritySchedulingOnKilling(ref List<Process> runningProcess,
+            ref List<Process> queuingProcess,
+            ulong maxRunningProcess, ref Process process)
+        {
+            return FifoOnKilling(ref runningProcess, ref queuingProcess, maxRunningProcess, ref process);
+        }
+
+        public static void PrioritySchedulingOnUpdate(ref List<Process> runningProcess,
+            ref List<Process> queuingProcess,
+            ulong maxRunningProcess)
+        {
+            for (int i = 0; i < queuingProcess.Count; ++i)
+            {
+                Process xEntry = queuingProcess[i];
+                if (xEntry.Weight <= 3)
+                {
+                    xEntry.Weight = ++xEntry.Weight > 3 ? --xEntry.Weight : xEntry.Weight;
+                    queuingProcess[i] = xEntry;
+                }
+                else if (xEntry.Weight <= 6)
+                {
+                    xEntry.Weight = ++xEntry.Weight > 6 ? --xEntry.Weight : xEntry.Weight;
+                    queuingProcess[i] = xEntry;
+                }
+                else
+                {
+                    xEntry.Weight = ++xEntry.Weight >= 9 ? --xEntry.Weight : xEntry.Weight;
+                    queuingProcess[i] = xEntry;
+                }
+            }
+            queuingProcess.Sort(((processA, processB) =>
+            {
+                return (int) (processA.Weight - processB.Weight);
+            }));
+            
+            for (int i = 0; i < runningProcess.Count; ++i)
+            {
+                Process xEntry = runningProcess[i];
+                if (xEntry.Weight < 9 && xEntry.Weight < (queuingProcess.Count > 0 ? queuingProcess[0].Weight : 0))
+                {
+                    PrioritySchedulingOnKilling(ref runningProcess, ref queuingProcess, maxRunningProcess, ref xEntry);
+                    xEntry.Weight = 0;
+                    PrioritySchedulingOnRunning(ref runningProcess, ref queuingProcess, maxRunningProcess, ref xEntry);
+                }
+            }
+        }
+        
         #endregion
     }
 }

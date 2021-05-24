@@ -15,7 +15,6 @@ namespace SunistShell.ViewModel.Index
         private string _sd;
         private uint _pv;
         private bool _rm;
-        private string[] _his;
         private List<KeyValuePair<string, DataTable>> _hs;
 
         public List<KeyValuePair<string, DataTable>> HistorySource
@@ -27,17 +26,7 @@ namespace SunistShell.ViewModel.Index
                 OnPropertyChanged("HistorySource");
             }
         }
-        
-        public string[] History
-        {
-            get => _his;
-            set
-            {
-                _his = value;
-                OnPropertyChanged("History");
-            }
-        }
-        
+
         public string ProgressDescription 
         {
             get
@@ -99,7 +88,6 @@ namespace SunistShell.ViewModel.Index
             ProgressDescription = "就绪";
             ProgressValue = 0;
             StatusDescription = "欢迎使用SunistOS";
-            History = new string[5];
             HistorySource = new List<KeyValuePair<string, DataTable>>();
         }
 

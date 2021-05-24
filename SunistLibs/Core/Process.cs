@@ -19,6 +19,7 @@ namespace SunistLibs.Core
         private ulong _weight;
         private ProcessStatus _status;
         private MemoryBlock _memory;
+        private ulong _exceptedRuntime;
 
         public Process()
         {
@@ -28,6 +29,7 @@ namespace SunistLibs.Core
             _weight = 0;
             _status = ProcessStatus.Ready;
             _memory = new MemoryBlock();
+            _exceptedRuntime = UInt64.MaxValue;
         }
 
         public Process(string name, ulong id, ulong weight, MemoryBlock memory)
@@ -38,6 +40,12 @@ namespace SunistLibs.Core
             _weight = weight;
             _status = ProcessStatus.Ready;
             _memory = memory;
+        }
+
+        public ulong ExceptedRuntime
+        {
+            get => _exceptedRuntime;
+            set => _exceptedRuntime = value;
         }
 
         public string Name

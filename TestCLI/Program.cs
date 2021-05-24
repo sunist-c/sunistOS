@@ -13,7 +13,7 @@ namespace TestCLI
     {
         public static void Main(string[] args)
         {
-            
+            /*
             ProcessController controller = new ProcessController();
             controller.Display += (source, mode) =>
             {
@@ -28,6 +28,11 @@ namespace TestCLI
                 controller.List(ProcessStatus.Running);
                 Thread.Sleep(100);
             }
+            */
+
+            int a = 8;
+            a = ++a >= 9 ? --a : a;
+            Console.WriteLine(a);
         }
     }
 }
