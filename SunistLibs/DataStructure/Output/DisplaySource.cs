@@ -9,6 +9,7 @@ namespace SunistLibs.DataStructure.Output
         private string[] _columnsName;
         private List<string[]> _rowData;
         private DataTable _dataTable;
+        private string _statusDescription;
 
         public string SourceName
         {
@@ -18,6 +19,11 @@ namespace SunistLibs.DataStructure.Output
         public DataTable DataTable
         {
             get => _dataTable;
+        }
+
+        public string StatusDescription
+        {
+            get => _statusDescription;
         }
 
         public DisplaySource()
@@ -33,14 +39,17 @@ namespace SunistLibs.DataStructure.Output
             
             _dataTable.Columns.Add(_columnsName[0]);
             _dataTable.Rows.Add(_rowData[0]);
+            _statusDescription = "This is a data that ctor generated";
         }
 
-        public DisplaySource(string sourceName, string[] columnsName, List<string[]> rowData)
+        public DisplaySource(string sourceName, string[] columnsName, List<string[]> rowData, 
+            string description = "Exec Finished")
         {
             _columnsName = new string[1];
             _rowData = new List<string[]>();
             _dataTable = new DataTable();
-            
+
+            _statusDescription = description;
             _sourceName = sourceName;
             _columnsName = columnsName;
             _rowData = rowData;

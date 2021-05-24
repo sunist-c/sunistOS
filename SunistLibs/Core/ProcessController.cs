@@ -97,7 +97,8 @@ namespace SunistLibs.Core
 
         private ulong GetNewProcessId()
         {
-            return _usedProcesCount++;
+            _usedProcesCount++;
+            return _usedProcesCount-1;
         }
 
         public DisplaySource DisplayInfo(Display displayMethod, params object[] args)
@@ -112,7 +113,7 @@ namespace SunistLibs.Core
             var x = new Process(name, GetNewProcessId(), GetNewProcessWeight(weight), context);
             _processesList.Add(x);
             Display?.Invoke(new DisplaySource(
-                "New Process Create Succeed",
+                "ProcessCreated",
                 new string[] {"ProcessId", "ProcessName", "ProcessMemorySize"},
                 new string[]
                 {
@@ -209,20 +210,22 @@ namespace SunistLibs.Core
                 {
                     if (tProcess.Status == xStatus)
                     {
-                        string[] record = new string[4];
+                        string[] record = new string[5];
                         record[0] = tProcess.Id.ToString();
                         record[1] = tProcess.Name;
                         record[2] = tProcess.Weight.ToString();
                         record[3] = tProcess.CpuTime.ToString();
+                        record[4] = tProcess.Status.ToString();
                         processData.Add(record);
                     }
                 }
             }
             
             Display(new DisplaySource(
-                "MemoryList",
-                new string[] {"ProcessId", "ProcessName", "ProcessWeight", "CPU Time"},
-                processData
+                "ProcessList",
+                new string[] {"ProcessId", "ProcessName", "ProcessWeight", "CPU Time", "ProcessStatus"},
+                processData,
+                "Process Listed"
             ), DisplayMode.All);
         }
     }
