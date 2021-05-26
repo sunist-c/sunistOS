@@ -12,29 +12,29 @@ namespace SunistLibs.Core
 {
     public class ProcessController : IDisplayable
     {
-        private List<Process> _processesList;
+        private List<XProcess> _processesList;
         private MemoryController _memoryController;
         private ulong _maxRunningProcessCount;
         private ProcessManagerAlgorithm _managerAlgorithm;
         private ulong _usedProcesCount;
-        private List<Process> _runningProcess;
-        private List<Process> _queuingProcess;
+        private List<XProcess> _runningProcess;
+        private List<XProcess> _queuingProcess;
         private Timer _timer;
 
         public ProcessController(ulong maxRunningProcessCount = 1, 
             ProcessManagerAlgorithm managerAlgorithm = ProcessManagerAlgorithm.Auto)
         {
-            _runningProcess = new List<Process>();
+            _runningProcess = new List<XProcess>();
             _memoryController = new MemoryController();
-            _queuingProcess = new List<Process>();
-            _processesList = new List<Process>();
+            _queuingProcess = new List<XProcess>();
+            _processesList = new List<XProcess>();
             _maxRunningProcessCount = maxRunningProcessCount;
             _managerAlgorithm = managerAlgorithm;
             _usedProcesCount = 0;
             Create("ProcessController", new MemoryBlock(), WeightType.System, false);
             
 
-            (_processesList[0] as Process).Status = ProcessStatus.Running;
+            (_processesList[0] as XProcess).Status = ProcessStatus.Running;
             _runningProcess.Add((Process)_processesList[0]);
             
             _timer = new Timer(100);
@@ -225,7 +225,7 @@ namespace SunistLibs.Core
                 "ProcessList",
                 new string[] {"ProcessId", "ProcessName", "ProcessWeight", "CPU Time", "ProcessStatus"},
                 processData,
-                "Process Listed"
+                "XProcess Listed"
             ), DisplayMode.All);
         }
     }

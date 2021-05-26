@@ -11,7 +11,7 @@ using SunistLibs.DataStructure.Output;
 
 namespace SunistLibs.Core
 {
-    public class Process
+    public class XProcess
     {
         private string _name;
         private ulong _id;
@@ -21,7 +21,7 @@ namespace SunistLibs.Core
         private MemoryBlock _memory;
         private ulong _exceptedRuntime;
 
-        public Process()
+        public XProcess()
         {
             _name = "Unknown";
             _id = 0;
@@ -32,7 +32,7 @@ namespace SunistLibs.Core
             _exceptedRuntime = UInt64.MaxValue;
         }
 
-        public Process(string name, ulong id, ulong weight, MemoryBlock memory)
+        public XProcess(string name, ulong id, ulong weight, MemoryBlock memory)
         {
             _name = name;
             _id = id;

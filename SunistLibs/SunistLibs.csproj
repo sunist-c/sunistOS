@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,16 +50,36 @@
     <Compile Include="Core\Enums\Enums.cs" />
     <Compile Include="Core\File.cs" />
     <Compile Include="Core\FileController.cs" />
+    <Compile Include="Core\Interface\MessageQueue\ICommandLineInterface.cs" />
+    <Compile Include="Core\Interface\MessageQueue\IMessage.cs" />
+    <Compile Include="Core\Interface\ProcessSystem\IProcess.cs" />
+    <Compile Include="Core\Interface\SystemController\ISystemController.cs" />
     <Compile Include="Core\MemoryBlock.cs" />
-    <Compile Include="Core\Process.cs" />
+    <Compile Include="Core\Memory\MemoryBlock.cs" />
+    <Compile Include="Core\Message\BaseMessage.cs" />
+    <Compile Include="Core\Message\CommandLineMessage.cs" />
+    <Compile Include="Core\Message\MessageEvent.cs" />
+    <Compile Include="Core\Process\ProcessController.cs" />
+    <Compile Include="Core\Process\ProcessEvent.cs" />
+    <Compile Include="Core\XProcess.cs" />
     <Compile Include="Core\ProcessController.cs" />
+    <Compile Include="Core\Process\BaseProcess.cs" />
+    <Compile Include="Core\Runtime.cs" />
     <Compile Include="DataStructure\Interfaces\IDisplayable.cs" />
+    <Compile Include="DataStructure\Interfaces\ISunistCoreController.cs" />
     <Compile Include="DataStructure\Output\DisplaySource.cs" />
     <Compile Include="MemoryController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core\Device" />
+    <Folder Include="Core\EventSystem" />
+    <Folder Include="Core\File" />
+    <Folder Include="Core\Property" />
     <Folder Include="Tools" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,12 +13,12 @@ namespace TestCLI
     {
         public static void Main(string[] args)
         {
-            /*
+            
             ProcessController controller = new ProcessController();
             controller.Display += (source, mode) =>
             {
                 if (mode == DisplayMode.All)
-                    Console.WriteLine($"Process Created: ID {source.DataTable.Rows[0][0]}, CPU Time: {source.DataTable.Rows[0][3]}");
+                    Console.WriteLine($"XProcess Created: ID {source.DataTable.Rows[0][0]}, ProcessName: {source.DataTable.Rows[0][1]}, CPU Time: {source.DataTable.Rows[0][3]}");
                 return true;
             };
 
@@ -28,11 +28,6 @@ namespace TestCLI
                 controller.List(ProcessStatus.Running);
                 Thread.Sleep(100);
             }
-            */
-
-            int a = 8;
-            a = ++a >= 9 ? --a : a;
-            Console.WriteLine(a);
         }
     }
 }

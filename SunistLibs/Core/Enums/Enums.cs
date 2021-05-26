@@ -58,4 +58,12 @@
         FIFO,
         SJF
     }
+    
+    // ========== New Version =========== //
+    public enum ProcessManageAlgorithm
+    {
+        Fifo,
+        RoundRobin,
+        PriorityScheduling
+    }
 }
