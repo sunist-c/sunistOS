@@ -45,33 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Algorithm\ProcessManageAlgorithm.cs" />
     <Compile Include="Core\Delegate\Delegates.cs" />
     <Compile Include="Core\Enums\Enums.cs" />
-    <Compile Include="Core\File.cs" />
-    <Compile Include="Core\FileController.cs" />
     <Compile Include="Core\Interface\MessageQueue\ICommandLineInterface.cs" />
     <Compile Include="Core\Interface\MessageQueue\IMessage.cs" />
     <Compile Include="Core\Interface\ProcessSystem\IProcess.cs" />
     <Compile Include="Core\Interface\SystemController\ISystemController.cs" />
-    <Compile Include="Core\MemoryBlock.cs" />
     <Compile Include="Core\Memory\MemoryBlock.cs" />
     <Compile Include="Core\Message\BaseMessage.cs" />
     <Compile Include="Core\Message\CommandLineMessage.cs" />
     <Compile Include="Core\Message\MessageEvent.cs" />
+    <Compile Include="Core\Process\BasicProcess.cs" />
     <Compile Include="Core\Process\ProcessController.cs" />
     <Compile Include="Core\Process\ProcessEvent.cs" />
-    <Compile Include="Core\XProcess.cs" />
-    <Compile Include="Core\ProcessController.cs" />
     <Compile Include="Core\Process\BaseProcess.cs" />
     <Compile Include="Core\Runtime.cs" />
     <Compile Include="DataStructure\Interfaces\IDisplayable.cs" />
     <Compile Include="DataStructure\Interfaces\ISunistCoreController.cs" />
     <Compile Include="DataStructure\Output\DisplaySource.cs" />
-    <Compile Include="MemoryController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core\Algorithm" />
     <Folder Include="Core\Device" />
     <Folder Include="Core\EventSystem" />
     <Folder Include="Core\File" />

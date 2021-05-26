@@ -1,5 +1,7 @@
+using System;
 using SunistLibs.Core.Enums;
-using SunistLibs.Core.Interface.SystemController;
+using SunistLibs.Core.Memory;
+using SunistLibs.Core.Process;
 
 namespace SunistLibs.Core.Interface.ProcessSystem
 {
@@ -15,5 +17,12 @@ namespace SunistLibs.Core.Interface.ProcessSystem
         void AddWeight();
         void SubWeight();
         void StillRunning();
+        void ReQueuing();
+
+        void Main(params Object[] args);
+        void Run();
+        void Abort();
+        event ProcessOnRun OnRun;
+        event ProcessOnAbort OnAbort;
     }
 }

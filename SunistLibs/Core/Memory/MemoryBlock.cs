@@ -37,10 +37,13 @@ namespace SunistLibs.Core.Memory
         private int _topIndex;
         private int _size;
 
+        public int Size => _size;
+
         public MemoryBlock()
         {
             _memoryData = new List<KeyValuePair<int, byte[]>>();
-            _topIndex = 0;
+            _size = 0;
+            _topIndex = -1;
         }
 
         private int GetIndex()
@@ -67,6 +70,12 @@ namespace SunistLibs.Core.Memory
         public T Get<T>(int index)
         {
             return (T) DeserializeObject(_memoryData[index].Value);
+        }
+
+        public void Clear()
+        {
+            _memoryData.Clear();
+            _size = 0;
         }
 
         public void Remove(int index)
