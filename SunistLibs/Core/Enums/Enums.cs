@@ -66,4 +66,12 @@
         Occupied,
         Offline
     }
+
+    public enum TextEncoding
+    {
+        ASCII,
+        UTF8,
+        GBK,
+        UNICODE
+    }
 }

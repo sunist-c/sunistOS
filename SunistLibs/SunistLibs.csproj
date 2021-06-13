@@ -45,18 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\BaseControllers\BaseDeviceController.cs" />
+    <Compile Include="Core\BaseControllers\BaseFileController.cs" />
     <Compile Include="Core\BaseControllers\BaseMemoryController.cs" />
     <Compile Include="Core\BaseControllers\BaseProcessController.cs" />
     <Compile Include="Core\Delegate\Delegates.cs" />
     <Compile Include="Core\Device\BaseDevice.cs" />
+    <Compile Include="Core\Device\DeviceController.cs" />
     <Compile Include="Core\Device\DeviceEvent.cs" />
     <Compile Include="Core\Enums\Enums.cs" />
     <Compile Include="Core\EventSystem\LogEvent.cs" />
+    <Compile Include="Core\File\BaseDirectory.cs" />
+    <Compile Include="Core\File\BaseFile.cs" />
+    <Compile Include="Core\File\FileController.cs" />
     <Compile Include="Core\Interface\BaseStructure\IDevice.cs" />
+    <Compile Include="Core\Interface\BaseStructure\IDirectory.cs" />
+    <Compile Include="Core\Interface\BaseStructure\IFile.cs" />
     <Compile Include="Core\Interface\BaseStructure\IMemoryBlock.cs" />
     <Compile Include="Core\Interface\MessageQueue\ICommandLineInterface.cs" />
     <Compile Include="Core\Interface\MessageQueue\IMessage.cs" />
     <Compile Include="Core\Interface\BaseStructure\IProcess.cs" />
+    <Compile Include="Core\Interface\SystemController\IDeviceController.cs" />
+    <Compile Include="Core\Interface\SystemController\IFileController.cs" />
     <Compile Include="Core\Interface\SystemController\IMemoryController.cs" />
     <Compile Include="Core\Interface\SystemController\IProcessController.cs" />
     <Compile Include="Core\Interface\SystemController\ISystemController.cs" />
@@ -80,9 +90,6 @@
     <Compile Include="DataStructure\Output\DisplaySource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\IO\CsvHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\File" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

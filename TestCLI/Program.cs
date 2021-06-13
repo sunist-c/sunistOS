@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using SunistLibs.Core;
 using SunistLibs.Core.Enums;
+using SunistLibs.Core.File;
 using SunistLibs.Core.Interface.BaseStructure;
 using SunistLibs.Core.Memory;
 using SunistLibs.Core.Process;
@@ -38,11 +40,13 @@ namespace TestCLI
             // {
             //     Console.WriteLine($"Process Name {process.Name}, Status {process.Status}, RunningTime {process.RunningTime}");
             // }
-            CsvHelper csv = new CsvHelper();
-            csv.Load("/Users/sunistchan/Desktop/test.csv", false);
-            csv.ConsoleDisplay();
 
-            
+            FileController fileController = new FileController();
+            var list = fileController.List("~");
+            foreach (IFile file in list)
+            {
+                Console.WriteLine(file.Information.Name);
+            }
         }
     }
 }

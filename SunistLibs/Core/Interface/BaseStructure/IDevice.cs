@@ -9,6 +9,9 @@ namespace SunistLibs.Core.Interface.BaseStructure
         string Description { get; }
         int FatherProcessID { get; }
         DeviceStatus Status { get; set; }
-        
+
+        DeviceStatus Logout();
+        DeviceStatus Free();
+        DeviceStatus Occupy(int processId);
     }
 }
