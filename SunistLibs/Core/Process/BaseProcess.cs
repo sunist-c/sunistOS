@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using SunistLibs.Core.Enums;
-using SunistLibs.Core.Interface.ProcessSystem;
+using SunistLibs.Core.Interface.BaseStructure;
 using SunistLibs.Core.Memory;
 using Timer = System.Timers.Timer;
 
@@ -19,18 +19,13 @@ namespace SunistLibs.Core.Process
         private int _runningTime;
         private CancellationTokenSource cts;
         private CancellationToken ct;
-        private bool _inited;
 
         public string Name
         {
             get => _name;
             set
             {
-                if (!_inited)
-                {
-                    _name = value;
-                    _inited = true;
-                }
+                _name = value;
             }
         }
 
@@ -39,17 +34,18 @@ namespace SunistLibs.Core.Process
             get => _id;
             set
             {
-                if (!_inited)
-                {
-                    _id = value;
-                    _inited = true;
-                }
+                _id = value;
+                _context.SetFather(_id);
             }
         }
         public ProcessStatus Status 
         { 
             get => _status;
-            set { _status = value; }
+            set
+            {
+                _status = value;
+                // Console.WriteLine($"{ID}, {value}, {RunningTime}");
+            }
         }
         public MemoryBlock Context { get => _context; }
         public int Weight { get => _weight; }
@@ -109,10 +105,9 @@ namespace SunistLibs.Core.Process
 
         public event ProcessOnRun OnRun;
         public event ProcessOnAbort OnAbort;
-
+        
         public BaseProcess()
         {
-            _inited = false;
             _name = "";
             _id = 0;
             _status = ProcessStatus.Ready;

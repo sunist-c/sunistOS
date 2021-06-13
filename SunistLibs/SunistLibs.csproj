@@ -45,33 +45,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\BaseControllers\BaseMemoryController.cs" />
+    <Compile Include="Core\BaseControllers\BaseProcessController.cs" />
     <Compile Include="Core\Delegate\Delegates.cs" />
+    <Compile Include="Core\Device\BaseDevice.cs" />
+    <Compile Include="Core\Device\DeviceEvent.cs" />
     <Compile Include="Core\Enums\Enums.cs" />
+    <Compile Include="Core\EventSystem\LogEvent.cs" />
+    <Compile Include="Core\Interface\BaseStructure\IDevice.cs" />
+    <Compile Include="Core\Interface\BaseStructure\IMemoryBlock.cs" />
     <Compile Include="Core\Interface\MessageQueue\ICommandLineInterface.cs" />
     <Compile Include="Core\Interface\MessageQueue\IMessage.cs" />
-    <Compile Include="Core\Interface\ProcessSystem\IProcess.cs" />
+    <Compile Include="Core\Interface\BaseStructure\IProcess.cs" />
+    <Compile Include="Core\Interface\SystemController\IMemoryController.cs" />
+    <Compile Include="Core\Interface\SystemController\IProcessController.cs" />
     <Compile Include="Core\Interface\SystemController\ISystemController.cs" />
+    <Compile Include="Core\Memory\BaseMemoryBlock.cs" />
     <Compile Include="Core\Memory\MemoryBlock.cs" />
+    <Compile Include="Core\Memory\MemoryController.cs" />
+    <Compile Include="Core\Memory\MemoryEvent.cs" />
+    <Compile Include="Core\Memory\MemoryReplacementAlgorithm.cs" />
     <Compile Include="Core\Message\BaseMessage.cs" />
     <Compile Include="Core\Message\CommandLineMessage.cs" />
     <Compile Include="Core\Message\MessageEvent.cs" />
     <Compile Include="Core\Process\BasicProcess.cs" />
+    <Compile Include="Core\Process\ProcessManagementAlgorithm.cs" />
     <Compile Include="Core\Process\ProcessController.cs" />
     <Compile Include="Core\Process\ProcessEvent.cs" />
     <Compile Include="Core\Process\BaseProcess.cs" />
+    <Compile Include="Core\Property\ProcessControllerProperty.cs" />
     <Compile Include="Core\Runtime.cs" />
     <Compile Include="DataStructure\Interfaces\IDisplayable.cs" />
     <Compile Include="DataStructure\Interfaces\ISunistCoreController.cs" />
     <Compile Include="DataStructure\Output\DisplaySource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\IO\CsvHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Algorithm" />
-    <Folder Include="Core\Device" />
-    <Folder Include="Core\EventSystem" />
     <Folder Include="Core\File" />
-    <Folder Include="Core\Property" />
-    <Folder Include="Tools" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

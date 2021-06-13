@@ -3,7 +3,7 @@ using SunistLibs.Core.Enums;
 using SunistLibs.Core.Memory;
 using SunistLibs.Core.Process;
 
-namespace SunistLibs.Core.Interface.ProcessSystem
+namespace SunistLibs.Core.Interface.BaseStructure
 {
     public interface IProcess
     { 

@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SunistLibs.Core.Memory
 {
-    public class MemoryBlock
+    public class MemoryBlock : BaseMemoryBlock
     {
         private static byte[] SerializeObject(object obj)
         {

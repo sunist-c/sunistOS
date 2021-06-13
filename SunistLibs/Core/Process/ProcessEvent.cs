@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SunistLibs.Core.Enums;
-using SunistLibs.Core.Interface.ProcessSystem;
+using SunistLibs.Core.Interface.BaseStructure;
 
 namespace SunistLibs.Core.Process
 {
@@ -43,6 +43,19 @@ namespace SunistLibs.Core.Process
         int updateArgument,
         int maxRunningCount
     );
-    
+
+    public delegate void ProcessManageOnHangingHandler(
+        ref List<IProcess> runningProcesses,
+        ref List<IProcess> queuingProcesses,
+        ref IProcess process,
+        int maxRunningCount
+    );
+
+    public delegate void ProcessManageOnSyncHandler(
+        ref List<IProcess> runningProcesses,
+        ref List<IProcess> queuingProcesses,
+        ref List<IProcess> processesList
+    );
+
     #endregion
 }

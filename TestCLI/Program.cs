@@ -1,23 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using SunistLibs.Core;
 using SunistLibs.Core.Enums;
+using SunistLibs.Core.Interface.BaseStructure;
+using SunistLibs.Core.Memory;
 using SunistLibs.Core.Process;
+using SunistLibs.Tools.IO;
 
 namespace TestCLI
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
-            ProcessController x = new ProcessController(4, ProcessManageAlgorithm.Fifo);
+            // ProcessController x = new ProcessController(10, ProcessManageAlgorithm.Fifo);
+            // for (int i = 0; i < 50; ++i)
+            // {
+            //     int p = x.Create($"test{i}", objects =>
+            //     {
+            //         Console.WriteLine($"Task {i} is finished");
+            //         Thread.Sleep(1000);
+            //     });
+            //     IProcess pp = x.Find(p);
+            //     Thread.Sleep(100);
+            //     int m = x.MemoryController.AddContext(pp, new MemoryBlock());
+            //     x.Run(p);
+            // }
+            //
+            // Thread.Sleep(5000);
+            // var list = x.List();
+            // foreach (IProcess process in list)
+            // {
+            //     Console.WriteLine($"Process Name {process.Name}, Status {process.Status}, RunningTime {process.RunningTime}");
+            // }
+            CsvHelper csv = new CsvHelper();
+            csv.Load("/Users/sunistchan/Desktop/test.csv", false);
+            csv.ConsoleDisplay();
 
-            Thread.Sleep(10000);
-            Console.WriteLine("Finished");
+            
         }
     }
 }

@@ -52,18 +52,18 @@
         None
     }
 
-    public enum ProcessManagerAlgorithm
-    {
-        Auto,
-        FIFO,
-        SJF
-    }
-    
     // ========== New Version =========== //
     public enum ProcessManageAlgorithm
     {
         Fifo,
         RoundRobin,
         PriorityScheduling
+    }
+
+    public enum DeviceStatus
+    {
+        Free,
+        Occupied,
+        Offline
     }
 }
